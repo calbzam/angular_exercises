@@ -10,12 +10,15 @@ import { MembersApiService } from '../members-api.service';
 })
 export class MembersTableComponent {
   members: MemberEntity[];
+  company: string;
 
   constructor(private membersApi: MembersApiService) { }
 
-  loadMembers() {
-    this.membersApi.getAllMembers('lemoncode')
+  loadMembers(company) {
+    this.membersApi.getAllMembers(company)
       .subscribe((ms) => this.members = ms);
   }
+
+  onKey(event) {this.company = event.target.value;}
 
 }
